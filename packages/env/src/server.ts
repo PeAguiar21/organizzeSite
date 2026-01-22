@@ -6,6 +6,11 @@ export const env = createEnv({
   server: {
     CORS_ORIGIN: z.url(),
     NODE_ENV: z.enum(["development", "production", "test"]).default("development"),
+    PORT: z.coerce.number().default(3000),
+    DB_HOST: z.string().default("localhost"),
+    DB_USER: z.string().default("user_pedro"),
+    DB_PASSWORD: z.string().default("123panoramix"),
+    DB_NAME: z.string().default("financial_app"),
   },
   runtimeEnv: process.env,
   emptyStringAsUndefined: true,

@@ -1,0 +1,3 @@
+{
+  "extends": "@financialSite/config/tsconfig.base.json"
+}

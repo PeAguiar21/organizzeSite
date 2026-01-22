@@ -26,6 +26,8 @@
   "dependencies": {
     "@financialSite/env": "workspace:*",
     "dotenv": "catalog:",
+    "express": "^5.2.1",
+    "mysql2": "^3.16.1",
     "zod": "catalog:"
   },
   "devDependencies": {
