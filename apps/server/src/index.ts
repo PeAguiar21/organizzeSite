@@ -1,8 +1,7 @@
-import { dbConfig } from "@financialSite/db";
+import { db } from "@financialSite/db";
 import { env } from "@financialSite/env/server";
 import cors from "cors";
 import express from "express";
-import mysql from "mysql2/promise";
 
 const app = express();
 
@@ -15,16 +14,14 @@ app.use(
 
 app.use(express.json());
 
-app.get("/", (req, res) => {
+app.get("/", (_req, res) => {
 	res.json({ status: "online", runtime: "Bun", service: "Financial API" });
 });
 
-app.get("/db-check", async (req, res) => {
+app.get("/db-check", async (_req, res) => {
 	try {
-		const connection = await mysql.createConnection(dbConfig);
-		const [rows] = await connection.execute("SELECT NOW() as now");
-		await connection.end();
-		res.json({ db_status: "connected", time: rows });
+		const result = await db.execute("SELECT NOW() as now");
+		res.json({ db_status: "connected", time: result });
 	} catch (error) {
 		console.error(error);
 		res.status(500).json({ error: "Falha na conexão com o banco" });
