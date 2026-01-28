@@ -4,10 +4,10 @@ import mysql from "mysql2/promise";
 import * as schema from "./schema";
 
 export const dbConfig = {
-	host: env.DB_HOST || "localhost",
-	user: env.DB_USER || "user_pedro",
-	password: env.DB_PASSWORD || "123panoramix",
-	database: env.DB_NAME || "financial_app",
+	host: env.DB_HOST,
+	user: env.DB_USER,
+	password: env.DB_PASSWORD,
+	database: env.DB_NAME,
 };
 
 const connection = await mysql.createConnection(dbConfig);
