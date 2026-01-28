@@ -4,7 +4,7 @@ import { TransactionController } from "../controllers/transaction.controller";
 const router: ExpressRouter = Router();
 const controller = new TransactionController();
 
-// Prefixo: /transactions (definido no index de rotas)
+// Prefix: /transactions
 
 router.get("/", controller.index);
 router.post("/", controller.create);
