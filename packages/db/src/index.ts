@@ -12,3 +12,5 @@ export const dbConfig = {
 
 const connection = await mysql.createConnection(dbConfig);
 export const db = drizzle(connection, { schema, mode: "default" });
+
+export * from "./schema";

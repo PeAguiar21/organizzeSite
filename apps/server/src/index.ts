@@ -2,6 +2,7 @@ import { db } from "@financialSite/db";
 import { env } from "@financialSite/env/server";
 import cors from "cors";
 import express from "express";
+import { router } from "./routes/index.js";
 
 const app = express();
 
@@ -14,9 +15,12 @@ app.use(
 
 app.use(express.json());
 
-app.get("/", (_req, res) => {
-	res.json({ status: "online", runtime: "Bun", service: "Financial API" });
+app.use((req, _res, next) => {
+	console.log(`[${new Date().toISOString()}] ${req.method} ${req.url}`);
+	next();
 });
+
+app.use("/api/v1", router);
 
 app.get("/db-check", async (_req, res) => {
 	try {
@@ -30,4 +34,5 @@ app.get("/db-check", async (_req, res) => {
 
 app.listen(env.PORT, () => {
 	console.log(`🚀 Server running on http://localhost:${env.PORT}`);
+	console.log(`📡 API available at http://localhost:${env.PORT}/api/v1`);
 });
